@@ -1,0 +1,6 @@
+pyproject.toml
+src/minbox_api.egg-info/PKG-INFO
+src/minbox_api.egg-info/SOURCES.txt
+src/minbox_api.egg-info/dependency_links.txt
+src/minbox_api.egg-info/requires.txt
+src/minbox_api.egg-info/top_level.txt

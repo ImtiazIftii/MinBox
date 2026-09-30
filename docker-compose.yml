@@ -1,0 +1,24 @@
+services:
+#PostgreSQL Database Service
+
+  db:
+    image: postgres:16-alpine  #images make sure after closing the storage dont get vanished
+    container_name: minbox_db
+    restart: unless-stopped
+    environment: 
+      POSTGRES_USER: minbox_user
+      POSTGRES_PASSWORD: minbox_password
+      POSTGRES_DB: minbox_dev
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL","pg_isready -U minbox_user -d minbox_dev"]
+      interval : 5s
+      timeout: 5s
+      retries: 5
+
+
+volumes:
+  postgres_data:

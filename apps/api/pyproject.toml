@@ -1,0 +1,46 @@
+#New way for python to store all the dependencies, related infos etc
+#instead of creating requirements.txt and multiple other files
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "minbox-api"
+version = "0.1.0"
+description = "FastAPI backend for MinBox messaging hub"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.115.0",
+    "uvicorn[standard]>=0.30.0",
+    "pydantic-settings>=2.4.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "httpx>=0.27.0",       # Required by FastAPI TestClient to make test requests
+    "ruff>=0.6.0",         # Ultra-fast linter and code formatter (replaces Black/Flake8)
+    "mypy>=1.11.0",        # Static type checker for Python
+]
+
+# Configure Ruff (our linter and formatter)
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"] # Error, Pyflakes, isort (imports), pyupgrade, bugbear
+
+# Configure Pytest (our test runner)
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+# Configure Mypy (our type checker)
+[tool.mypy]
+python_version = "3.11"
+strict = true
+warn_return_any = true
+warn_unused_configs = true
