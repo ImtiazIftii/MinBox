@@ -11,8 +11,16 @@ class Settings(BaseSettings):
     API_V1_STR: str = "/api/v1"
     ENVIRONMENT: str = "development"
 
+
+    DATABASE_URL: str = (
+        "postgresql+asyncpg://minbox_user:minbox_password@localhost:5432/minbox_dev"
+    )
+
+
     model_config = SettingsConfigDict(
-        env_file=".env", env_file_encoding="utf-8", extra="ignore"
+        env_file=".env",
+        env_file_encoding="utf-8",
+        extra="ignore"
     )
 
 
